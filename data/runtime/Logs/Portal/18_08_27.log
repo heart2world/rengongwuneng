@@ -1,0 +1,18 @@
+[ 2018-08-27T09:33:34+08:00 ] 123.147.250.59 /index.php?g=Portal&m=Index&a=getUserInfo&code=081ayzgn0PtUOs1Wvagn0UIygn0ayzgf&state=STATE
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8E\xB5 _...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1N4vfUgV9vR4brnWbqddrBg','☀ 天氵 ☁间 🎵 _0.01km','http://thirdwx.qlogo.cn/mmopen/vi_32/nTJeT8ejelV4HwiaM4fOOHBBZdUxPtSgEALoAYoE2Wz20refibNpArWHqBbScF2bqMThtInll4sO5ua3mJyXPfAw/132','2')
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8E\xB5 _...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1N4vfUgV9vR4brnWbqddrBg','☀ 天氵 ☁间 🎵 _0.01km','http://thirdwx.qlogo.cn/mmopen/vi_32/nTJeT8ejelV4HwiaM4fOOHBBZdUxPtSgEALoAYoE2Wz20refibNpArWHqBbScF2bqMThtInll4sO5ua3mJyXPfAw/132','2')
+
+[ 2018-08-27T09:34:40+08:00 ] 123.147.250.59 /index.php?g=Portal&m=Index&a=getUserInfo&code=081fZeoB0TGQ8g2D2UmB0inaoB0fZeo3&state=STATE
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8E\xB5 _...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1N4vfUgV9vR4brnWbqddrBg','☀ 天氵 ☁间 🎵 _0.01km','http://thirdwx.qlogo.cn/mmopen/vi_32/nTJeT8ejelV4HwiaM4fOOHBBZdUxPtSgEALoAYoE2Wz20refibNpArWHqBbScF2bqMThtInll4sO5ua3mJyXPfAw/132','2')
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8E\xB5 _...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1N4vfUgV9vR4brnWbqddrBg','☀ 天氵 ☁间 🎵 _0.01km','http://thirdwx.qlogo.cn/mmopen/vi_32/nTJeT8ejelV4HwiaM4fOOHBBZdUxPtSgEALoAYoE2Wz20refibNpArWHqBbScF2bqMThtInll4sO5ua3mJyXPfAw/132','2')
+
+[ 2018-08-27T09:37:34+08:00 ] 123.147.250.59 /index.php?g=Portal&m=Index&a=getUserInfo&code=061781H81V3LwR1yAKH818L6H81781Hl&state=STATE
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8E\xB5 _...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1N4vfUgV9vR4brnWbqddrBg','☀ 天氵 ☁间 🎵 _0.01km','http://thirdwx.qlogo.cn/mmopen/vi_32/nTJeT8ejelV4HwiaM4fOOHBBZdUxPtSgEALoAYoE2Wz20refibNpArWHqBbScF2bqMThtInll4sO5ua3mJyXPfAw/132','2')
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8E\xB5 _...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1N4vfUgV9vR4brnWbqddrBg','☀ 天氵 ☁间 🎵 _0.01km','http://thirdwx.qlogo.cn/mmopen/vi_32/nTJeT8ejelV4HwiaM4fOOHBBZdUxPtSgEALoAYoE2Wz20refibNpArWHqBbScF2bqMThtInll4sO5ua3mJyXPfAw/132','2')
+

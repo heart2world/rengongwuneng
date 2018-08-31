@@ -1,0 +1,98 @@
+<admintpl file="header" />
+</head>
+<link href="__PUBLIC__/jedate/skin/jedate.css" rel="stylesheet">
+<style>
+	input[type="text"], input[type="number"] {
+		padding: 3.5px 6px;
+	}
+
+	.table tr th, .table tr td {
+		text-align: center;
+	}
+</style>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('Salesmember/index')}">售后人员</a></li>
+			<li><a href="{:U('Salesmember/register_code')}">注册码</a></li>
+		</ul>
+		<form class="form-horizontal">
+			<fieldset>
+				<div class="control-group" style="margin-bottom: 0px;">
+					<label class="control-label">姓名：</label>
+					<div class="controls" style="margin-top: 5px;">
+						<label>{$member.user_name}</label>
+					</div>
+				</div>
+				<div class="control-group" style="margin-bottom: 0px;">
+					<label class="control-label">电话：</label>
+					<div class="controls" style="margin-top: 5px;">
+						<label>{$member.mobile}</label>
+					</div>
+				</div>
+				<div class="control-group" style="margin-bottom: 0px;">
+					<label class="control-label">区域：</label>
+					<div class="controls" style="margin-top: 5px;">
+						<label>
+							<volist name="member.area" id="vo" mod="2">
+								<eq name="mod" value="1">/</eq>{$vo.province}{$vo.city}{$vo.district}
+							</volist>
+						</label>
+					</div>
+				</div>
+				<table class="table table-hover table-bordered" style="width: 800px;margin-left:90px;">
+					<thead>
+					<tr>
+						<th width="50">ID</th>
+						<th width="80">申请时间</th>
+						<th width="80">项目名称</th>
+						<th width="80">申请人</th>
+						<th width="80">申请人电话</th>
+						<th width="80">紧急程度</th>
+						<th width="80">状态</th>
+						<th width="80">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<volist name="order" id="val">
+						<tr>
+							<td>{$val.id}</td>
+							<td>{$val.create_time}</td>
+							<td>{$val.project_name}</td>
+							<td>{$val.user_name}</td>
+							<td>{$val.mobile}</td>
+							<td>
+								<if condition="$val.emergency_degree eq 1">正常</if>
+								<if condition="$val.emergency_degree eq 2">紧急</if>
+								<if condition="$val.emergency_degree eq 3">非常紧急</if>
+							</td>
+							<td>
+								<if condition="$val.state eq 1">待指派</if>
+								<if condition="$val.state eq 2">已驳回</if>
+								<if condition="$val.state eq 3">指派中</if>
+								<if condition="$val.state eq 4">已接收</if>
+								<if condition="$val.state eq 5">已处理</if>
+								<if condition="$val.state eq 6">已评价</if>
+							</td>
+							<td>
+								<a href="{:U('Salesrecord/check',array('id'=>$val['id']))}" class="btn btn-primary"
+								   style="margin-right:20px;padding: 2px 15px;color: white;background-color: #1dccaa;">查看详情</a>
+							</td>
+						</tr>
+					</volist>
+					<if condition="count($order) eq 0">
+						<tr><td id="nonumber" colspan="8" style="text-align: center;">暂无数据信息</td>
+					</if>
+					</tbody>
+				</table>
+			</fieldset>
+            <div class="pagination" style="margin-left: 90px;">{$page}</div>
+		</form>
+	</div>
+<script src="__PUBLIC__/js/common.js"></script>
+<script src="__PUBLIC__/js/layer/layer.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

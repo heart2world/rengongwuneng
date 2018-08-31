@@ -1,0 +1,225 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的报修</title>
+	    <link rel="stylesheet" href="/public/wx/lib/weui/jquery-weui.css" />
+	    <link rel="stylesheet" href="/public/wx/lib/weui/weui.min.css" />
+	    <link rel="stylesheet" href="/public/wx/lib/swiper/swiper.min.css" />
+	    <link rel="stylesheet" href="/public/wx/css/public.css" />
+	    <link rel="stylesheet" href="/public/wx/css/style.css" />
+	    <script type="text/javascript" src="/public/wx/lib/jq/jquery-1.10.2.js" ></script>
+	    <script type="text/javascript" src="/public/wx/lib/weui/jquery-weui.js" ></script>
+	    <script type="text/javascript" src="/public/wx/js/v.min.js" ></script>
+	    <script type="text/javascript" src="/public/wx/js/common.js" ></script>
+	</head>
+	<body>
+		<section class="mainSec pb3rem" id="app">
+			<div class="choseTime disbox">
+				<div class="time disflex">
+					<!--<input class="startTime" type="date" placeholder="请选择日期">
+					<div class="line">-</div>
+					<input class="startTime" type="date" placeholder="请选择日期">-->
+					<input class="weui-input" type="text" id="showDatePicker1" placeholder="年/月/日">
+					<div class="line">-</div>
+					<input class="weui-input" type="text" id="showDatePicker2" placeholder="年/月/日">
+				</div>
+				<div class="choseType">
+					<p @click="choseState($event)" style="min-width:4rem" v-text="zhuangtai"></p>
+					<div v-show="isshow" class="choseState">
+						<div @click="chose($event,1)">待指派</div>
+						<div @click="chose($event,2)">已驳回</div>
+						<div @click="chose($event,3)">指派中</div>
+						<div @click="chose($event,4)">已接收</div>
+						<div @click="chose($event,5)">已处理</div>
+						<div @click="chose($event,6)">已评价</div>
+					</div>
+				</div>
+			</div>
+			<div class="weui-cells wdbxList">
+	            <a :href="prop.url" v-for="prop in list" class="weui-cell">
+	                <div class="weui-cell__bd" style="width: 1%">
+	                    <p class="title" v-text="prop.fault_type"></p>
+	                    <p class="ellipsis" v-text="prop.project_name"></p>
+	                    <p v-text="prop.create_time"></p>
+	                </div>
+					<div v-if="prop.state==1" class="weui-cell__ft stateText dzp">待指派</div>
+					<div v-else-if="prop.state==2" class="weui-cell__ft stateText ybh">已驳回</div>
+					<div v-else-if="prop.state==3" class="weui-cell__ft stateText zpz">指派中</div>
+					<div v-else-if="prop.state==4" class="weui-cell__ft stateText yjs">已接收</div>
+					<div v-else-if="prop.state==5" class="weui-cell__ft stateText ycl">已处理</div>
+					<div v-else class="weui-cell__ft stateText ypj">已评价</div>
+	            </a>
+	        </div>
+	        <div v-show="list.length<1" class="nothing" v-text="notice"></div>
+			<div v-show="isshow" class="meng" @click="isshow=false"></div>
+		</section>
+		<footer class="mainFooter">
+			<a class="zxbx" href="<?php echo U('Index/index');?>">在线报修</a>
+			<a class="wdbx active">我的报修</a>
+		</footer>
+	</body>
+</html>
+<script>
+var app = new Vue({
+	el:'#app',
+	data:{
+		zhuangtai:'报修状态',
+		list:[],
+		isshow:false,    //是否显示状态蒙层
+		notice:''
+	},
+	mounted:function(){
+	  this.getList();
+	},
+	methods:{
+	    getList : function(){
+	       var self=this;
+		   $.showLoading('加载中...');
+	      $.ajax({
+              url: "<?php echo U('Portal/Index/getServiceInfo');?>",
+              type: 'POST',
+              dataType:"json",
+              success:function (res) {
+				$.hideLoading();
+                  if (res.status == 1) {
+                      self.list = res.data;
+                      maxpage = res.page_size;
+						if(self.list.length<1){
+							self.notice="暂无报修项目~";
+						}
+                      console.log(maxpage);
+                  }
+              }
+		  });
+		},
+		//显示状态
+		choseState:function(evt){
+			var self=this;
+			self.isshow=true;
+		},
+		//选择状态
+		chose:function(evt,type){
+			var self=this;
+			self.zhuangtai=$(evt.target).text();
+		   $.showLoading('加载中...');
+			//ajax
+            $.ajax({
+                url: "<?php echo U('Portal/Index/getServiceInfo');?>",
+                type: 'POST',
+                data: {state:type},
+                dataType:"json",
+                success:function (res) {
+				$.hideLoading('加载中...');
+                    if (res.status == 1) {
+                        app.list = res.data;
+						if(self.list.length<1){
+							self.notice="暂无该类型保修项目~";
+						}
+                    }
+                }
+            });
+			this.isshow=false;
+		}
+	}
+});
+
+	var startDefault='';
+	var endDefault='';
+	$("#showDatePicker1").calendar({
+		dateFormat:'yyyy/m/d',
+        onClose:function(){    //用户选择日期时触发
+			//console.log(val.params.value);
+			console.log($('#showDatePicker1').val());
+			console.log($('#showDatePicker2').val())
+			var start=$('#showDatePicker1').val();
+			var end=$('#showDatePicker2').val();
+			/*if(start>end){
+				//console.log("开始大于结束")
+				self.notice="开始时间不能大于结束时间";
+				$('#showDatePicker1').val(end);
+				return
+			}
+			else{
+				console.log("开始小于结束")
+			}*/
+			//console.log(startDefault,endDefault);
+			//ajax
+            $.ajax({
+                url: "<?php echo U('Portal/Index/getServiceInfo');?>",
+                type: 'POST',
+                data: {s_time:start,e_time:end},
+                dataType:"json",
+                success:function (res) {
+                    if (res.status == 1) {
+                        app.list = res.data;
+                    }
+                }
+            });
+		}
+	});
+	$("#showDatePicker2").calendar({
+		dateFormat:'yyyy/m/d',
+		onClose:function(){    //用户选择日期时触发
+			//ajax
+			console.log($('#showDatePicker1').val());
+			console.log($('#showDatePicker2').val())
+			var start=$('#showDatePicker1').val();
+			var end=$('#showDatePicker2').val();
+            $.ajax({
+                url: "<?php echo U('Portal/Index/getServiceInfo');?>",
+                type: 'POST',
+                data: {s_time:start,e_time:end},
+                dataType:"json",
+                success:function (res) {
+                    if (res.status == 1) {
+                        app.list = res.data;
+                    }
+                }
+            });
+		}
+	});
+	
+	$(function(){
+		var dates=new Date();
+		var year=dates.getFullYear(),
+			month=dates.getMonth()+1;
+			day=dates.getDate();
+		startDefault=year+'/'+month+'/'+"1";
+		endDefault=year+'/'+month+'/'+day;
+		
+		$('#showDatePicker1').val(startDefault);
+		$('#showDatePicker2').val(endDefault);
+	})
+
+	var page=2,maxpage='';
+	window.onscroll = function () {
+		var scrollheight = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+		var height=$('body').height();
+		var winheight=$(window).height();
+		//判断上拉的高度以决定是否加载更多
+		if(scrollheight+winheight+50>height && page <= maxpage) {
+			//ajax
+            $.ajax({
+                url: "<?php echo U('Portal/Index/getServiceInfo');?>",
+                type: 'POST',
+                data: {page:page},
+                dataType:"json",
+                success:function (res) {
+                    if (res.status == 1) {
+                        res.data.forEach(function (index,val) {
+                            app.list.push({
+                                project_name:index.project_name,
+                                fault_type:index.fault_type,
+                                create_time:index.create_time
+							})
+                        });
+                    }
+                }
+            });
+            page++;
+		}
+	};
+</script>

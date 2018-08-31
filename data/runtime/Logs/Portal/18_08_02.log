@@ -1,0 +1,18 @@
+[ 2018-08-02T10:23:24+08:00 ] 183.67.61.101 /index.php?g=&m=Index&a=details&id=3
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+
+[ 2018-08-02T10:24:35+08:00 ] 61.151.226.156 /index.php?g=&m=Index&a=details&id=3
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+
+[ 2018-08-02T10:25:17+08:00 ] 101.226.86.155 /index.php?g=&m=Index&a=details&id=3
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+

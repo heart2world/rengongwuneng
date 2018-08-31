@@ -1,0 +1,24 @@
+[ 2018-08-03T11:50:49+08:00 ] 123.147.248.215 /index.php?g=&m=Index&a=details&id=3
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+
+[ 2018-08-03T15:04:01+08:00 ] 123.147.248.215 /index.php?g=&m=Index&a=details&id=9
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+
+[ 2018-08-03T15:04:04+08:00 ] 123.147.248.215 /index.php?g=&m=Index&a=details&id=9
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+
+[ 2018-08-03T15:05:23+08:00 ] 101.226.86.155 /index.php?g=&m=Index&a=details&id=9
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `ngkj_users` WHERE ( id= ) LIMIT 1  
+

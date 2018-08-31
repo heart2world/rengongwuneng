@@ -1,0 +1,6 @@
+[ 2018-08-18T15:50:18+08:00 ] 183.67.59.195 /index.php?g=Portal&m=Index&a=getUserInfo&code=0211Jptk1B3Zvm0wg5tk1Ibytk11JptZ&state=STATE
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8C\xB9\xE7\xBA...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1CPudisNAmm6G_KLmoZhMqE','🌹红梅🌹能工（智慧工地）🌹','http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83erowCoTq5sSqBREtuEUqzxm8YCJUibHyd0CC6epff5jsu0ItkYPphcUGBapS678gQc5grsgDsha8hQ/132','2')
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8C\xB9\xE7\xBA...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1CPudisNAmm6G_KLmoZhMqE','🌹红梅🌹能工（智慧工地）🌹','http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83erowCoTq5sSqBREtuEUqzxm8YCJUibHyd0CC6epff5jsu0ItkYPphcUGBapS678gQc5grsgDsha8hQ/132','2')
+

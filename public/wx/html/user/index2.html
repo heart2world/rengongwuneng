@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的报修</title>
+	    <link rel="stylesheet" href="../../lib/weui/jquery-weui.css" />
+	    <link rel="stylesheet" href="../../lib/weui/weui.min.css" />
+	    <link rel="stylesheet" href="../../lib/swiper/swiper.min.css" />
+	    <link rel="stylesheet" href="../../css/public.css" />
+	    <link rel="stylesheet" href="../../css/style.css" />
+	    <script type="text/javascript" src="../../lib/jq/jquery-1.10.2.js" ></script>
+	    <script type="text/javascript" src="../../lib/weui/jquery-weui.js" ></script>
+	    <script type="text/javascript" src="../../js/v.min.js" ></script>
+	    <script type="text/javascript" src="../../js/common.js" ></script>
+	</head>
+	<body>
+		<section class="mainSec pb3rem" id="app">
+			<div class="choseTime disbox">
+				<div class="time disflex">
+					<!--<input class="startTime" type="date" placeholder="请选择日期">
+					<div class="line">-</div>
+					<input class="startTime" type="date" placeholder="请选择日期">-->
+					<input class="weui-input" type="text" id="showDatePicker1" placeholder="年/月/日">
+					<div class="line">-</div>
+					<input class="weui-input" type="text" id="showDatePicker2" placeholder="年/月/日">
+				</div>
+				<div class="choseType">
+					<p @click="choseState($event)" v-text="zhuangtai"></p>
+					<div v-show="isshow" class="choseState">
+						<div @click="chose($event,1)">待指派</div>
+						<div @click="chose($event,2)">已驳回</div>
+						<div @click="chose($event,3)">指派中</div>
+						<div @click="chose($event,4)">已接收</div>
+					</div>
+				</div>
+			</div>
+			<div class="weui-cells wdbxList">
+	            <a href="details.html" class="weui-cell">
+	                <div class="weui-cell__bd">
+	                    <p class="title">塔机故障</p>
+	                    <p class="ellipsis">这里是项目名称</p>
+	                    <p>2018/7/9 16:00</p>
+	                </div>
+	                <div class="weui-cell__ft stateText dzp">待指派</div>
+	            </a>
+	            <a href="details.html" class="weui-cell">
+	                <div class="weui-cell__bd">
+	                    <p class="title">塔机故障</p>
+	                    <p class="ellipsis">这里是项目名称</p>
+	                    <p>2018/7/9 16:00</p>
+	                </div>
+	                <div class="weui-cell__ft stateText ybh">已驳回</div>
+	            </a>
+	            <a href="details.html" class="weui-cell">
+	                <div class="weui-cell__bd">
+	                    <p class="title">塔机故障</p>
+	                    <p class="ellipsis">这里是项目名称</p>
+	                    <p>2018/7/9 16:00</p>
+	                </div>
+	                <div class="weui-cell__ft stateText zpz">指派中</div>
+	            </a>
+	            <a href="details.html" class="weui-cell">
+	                <div class="weui-cell__bd">
+	                    <p class="title">塔机故障</p>
+	                    <p class="ellipsis">这里是项目名称</p>
+	                    <p>2018/7/9 16:00</p>
+	                </div>
+	                <div class="weui-cell__ft stateText yjs">已接收</div>
+	            </a>
+	            <a href="details.html" class="weui-cell">
+	                <div class="weui-cell__bd">
+	                    <p class="title">塔机故障</p>
+	                    <p class="ellipsis">这里是项目名称</p>
+	                    <p>2018/7/9 16:00</p>
+	                </div>
+	                <div class="weui-cell__ft stateText ycl">已处理</div>
+	            </a>
+	            <a href="details.html" class="weui-cell">
+	                <div class="weui-cell__bd">
+	                    <p class="title">塔机故障</p>
+	                    <p class="ellipsis">这里是项目名称</p>
+	                    <p>2018/7/9 16:00</p>
+	                </div>
+	                <div class="weui-cell__ft stateText ypj">已评价</div>
+	            </a>
+	        </div>
+			<div v-show="isshow" class="meng" @click="isshow=false"></div>
+		</section>
+		<footer class="mainFooter">
+			<a class="zxbx" href="index1.html">在线报修</div>
+			<a class="wdbx active">我的报修</div>
+		</footer>
+	</body>
+</html>
+<script>
+var app = new Vue({
+	el:'#app',
+	data:{
+		zhuangtai:'报修状态',
+		isshow:false    //是否显示状态蒙层
+	},
+	methods:{
+		//显示状态
+		choseState:function(evt){
+			var self=this;
+			self.isshow=true;
+		},
+		//选择状态
+		chose:function(evt,type){
+			var self=this;
+			self.zhuangtai=$(evt.target).text();
+			//ajax
+			this.isshow=false;
+		}
+		
+	}
+})
+
+	var startDefault='';
+	var endDefault='';
+	$("#showDatePicker1").calendar({
+		dateFormat:'yyyy/m/d',
+		onChange:function(){    //用户选择日期时触发
+			//ajax
+		}
+	});
+	$("#showDatePicker2").calendar({
+		dateFormat:'yyyy/m/d',
+		onChange:function(){    //用户选择日期时触发
+			//ajax
+		}
+	});
+	
+	$(function(){
+		var dates=new Date();
+		var year=dates.getFullYear(),
+			month=dates.getMonth()+1;
+			day=dates.getDate();
+		startDefault=year+'/'+month+'/'+"1";
+		endDefault=year+'/'+month+'/'+day;
+		$('#showDatePicker1').val(startDefault);
+		$('#showDatePicker2').val(endDefault);
+	})
+	
+</script>

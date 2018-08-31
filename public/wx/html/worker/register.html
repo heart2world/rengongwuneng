@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>注册</title>
+	    <link rel="stylesheet" href="../../lib/weui/jquery-weui.css" />
+	    <link rel="stylesheet" href="../../lib/weui/weui.min.css" />
+	    <link rel="stylesheet" href="../../lib/swiper/swiper.min.css" />
+	    <link rel="stylesheet" href="../../css/public.css" />
+	    <link rel="stylesheet" href="../../css/style.css" />
+	    <script type="text/javascript" src="../../lib/jq/jquery-3.2.0.min.js" ></script>
+	    <script type="text/javascript" src="../../lib/weui/jquery-weui.js" ></script>
+	    <script type="text/javascript" src="../../js/v.min.js" ></script>
+	    <script type="text/javascript" src="http://jqweui.com/dist/js/city-picker.js" ></script>
+	    <script type="text/javascript" src="http://jqweui.com/dist/js/swiper.js" ></script>
+	    <script type="text/javascript" src="../../js/common.js" ></script>
+	</head>
+	<style>
+		.weui-cells, .weui-vcode-btn{ font-size: .95rem;}
+		.weui-label{ width: 80px;}
+		body .toolbar .picker-button{ color: #0a72e5;}
+	</style>
+	<body>
+		<section class="mainSec pb3rem" id="app">
+			<div class="weui-cells weui-cells_form">
+	            <div class="weui-cell">
+	                <div class="weui-cell__hd"><label class="weui-label">售后人员</label></div>
+	                <div class="weui-cell__bd">
+	                    <input class="weui-input" type="text" v-model="names" placeholder="请输入姓名">
+	                </div>
+	            </div>
+	            <div class="weui-cell">
+	                <div class="weui-cell__hd"><label class="weui-label">联系电话</label></div>
+	                <div class="weui-cell__bd">
+	                    <input class="weui-input" type="number" pattern="[0-9]*" v-model="mobile" placeholder="请输入联系电话">
+	                </div>
+	            </div>
+	            <div class="weui-cell weui-cell_vcode cityBox">
+	                <div class="weui-cell__hd">
+	                    <label class="weui-label quyu">负责区域</label>
+	                </div>
+	                <div class="weui-cell__bd cityjt">
+	                    <input class="weui-input ellipsis area" type="text" placeholder="请选择负责区域" id="showCityPicker1">
+	                </div>
+	                <div class="weui-cell__ft">
+	                    <button class="weui-vcode-btn iconBtn addBtn" onclick="btnFn(this)"></button>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="BTN" @click="tijiaoFn($event)">立即提交</div>
+			<div v-show="isshow" class="meng"></div>
+			<div v-show="isshow" class="notice" v-text="notice"></div>
+		</section>
+	</body>
+</html>
+<script>
+	
+var app = new Vue({
+	el:'#app',
+	data:{
+		names:'',    //姓名
+		mobile:'',    //电话
+		idcount:1,
+		notice:'',      //提示语
+		areas:[],    //选择的区域
+		isshow:false
+	},
+	methods:{
+		setTime:function(){
+			var self=this;
+			setTimeout(function() {
+				self.isshow=false;
+			}, 2000)
+		},
+		//点击提交
+		tijiaoFn:function(evt){
+			var self=this;
+			var areas='',type=1;
+			self.areas=[];
+			if(self.names.length<1){
+				self.notice="请输入售后人员姓名";
+				self.isshow=true;
+				self.setTime();
+				return
+			}
+			if(self.mobile.length!=11){
+				self.notice="请输入合法手机号";
+				self.isshow=true;
+				self.setTime();
+				return
+			}
+			$('.area').each(function(){
+				if($(this).val().length<1){
+					type=0;
+					return
+				}
+				self.areas.push({
+					"areas":$(this).val()
+				})
+			})
+			if(type==0){
+				self.notice="请将区域信息填写完整";
+				self.isshow=true;
+				self.setTime();
+			}
+			console.log(self.areas);
+			//ajax
+			
+		}
+	}
+})
+
+//点击添加或删除按钮
+btnFn=function(obj){
+	if($(obj).hasClass('addBtn')){    //点击的是添加按钮
+		app.idcount++;
+		var len=$('.cityBox').length;
+		$('.cityBox').each(function(){
+			$(this).find('.addBtn').removeClass('addBtn').addClass('delBtn');
+		})
+		var ids="showCityPicker"+app.idcount;
+		$(obj).parents('.cityBox').after('<div class="weui-cell weui-cell_vcode cityBox">'+
+            '<div class="weui-cell__hd">'+
+                '<label class="weui-label quyu">负责区域<span>'+(len+1)+'<span></label>'+
+            '</div>'+
+            '<div class="weui-cell__bd cityjt">'+
+                '<input class="weui-input ellipsis area" type="text" placeholder="请选择负责区域" id="'+ids+'">'+
+            '</div>'+
+            '<div class="weui-cell__ft">'+
+                '<button class="weui-vcode-btn iconBtn addBtn" onclick="btnFn(this)"></button>'+
+            '</div>'+
+        '</div>');
+	}
+	else{    //点击的是删除按钮
+		var len=$('.cityBox').length-1;
+		var list=$(obj).parents('.cityBox').nextAll('.cityBox');
+		list.each(function(){
+			var num=parseInt($(this).find('.quyu span').text())-1;
+			$(this).find('.quyu span').text(num);
+		})
+		$(obj).parents('.cityBox').remove();
+	}
+	cityFn();
+}
+
+cityFn=function(){
+	$('.area').each(function(){
+		var ids="#"+$(this).attr('id');
+		console.log(ids);
+		$(ids).cityPicker({
+			title:"请选择所在负责区域"
+		});
+	})
+}
+
+$(function(){
+	cityFn();
+})
+
+</script>

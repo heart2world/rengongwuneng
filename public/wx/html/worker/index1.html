@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>待接任务</title>
+	    <link rel="stylesheet" href="../../lib/weui/jquery-weui.css" />
+	    <link rel="stylesheet" href="../../lib/weui/weui.min.css" />
+	    <link rel="stylesheet" href="../../lib/swiper/swiper.min.css" />
+	    <link rel="stylesheet" href="../../css/public.css" />
+	    <link rel="stylesheet" href="../../css/style.css" />
+	    <script type="text/javascript" src="../../lib/jq/jquery-1.10.2.js" ></script>
+	    <script type="text/javascript" src="../../lib/weui/jquery-weui.js" ></script>
+	    <script type="text/javascript" src="../../js/v.min.js" ></script>
+	    <script type="text/javascript" src="../../js/common.js" ></script>
+	</head>
+	<style>
+		.weui-cells:before{ display: none;}
+	</style>
+	<body>
+		<section class="mainSec pb3rem" id="app">
+			<div class="searchBox disbox">
+				<div class="disflex">
+					<div class="search disbox">
+						<input class="disflex searchkey" v-model="keywords" type="text" placeholder="请输入机构名称" />
+						<div v-show="isshow" class="clearBtn" @click="delFn($event)"></div>
+					</div>
+				</div>
+				<div class="sousuo" @click="searchFn($event)">搜索</div>
+			</div>
+			<div class="weui-cells">
+	            <a v-for="prop in list" class="weui-cell" href="details.html">
+	                <div class="weui-cell__bd baoxiu">
+	                    <p>
+	                    	<span v-text="prop.reason"></span>
+	                    	<span :class="prop.state==1?'fcjj':(prop.state==2?'jj':'zc')" class="stateBg" v-text="prop.stateText"></span>
+	                    </p>
+	                    <p v-text="prop.names" class="ellipsis"></p>
+	                    <p v-text="prop.time"></p>
+	                </div>
+	                <div class="weui-cell__ft djsText">待接收</div>
+	            </a>
+	        </div>
+	        <div v-show="list.length<1" class="nothing">非常抱歉，暂无该项目~</div>
+		</section>
+		<footer class="mainFooter">
+			<a class="djrw active">待接任务</div>
+			<a class="wdrw" href="index2.html">我的任务</div>
+		</footer>
+	</body>
+</html>
+<script>
+
+var app = new Vue({
+		el:'#app',
+		data:{
+			list:[
+				{
+					reason:"塔机故障",
+					stateText:"非常紧急",
+					state:1,
+					names:"这里是项目名称这里是项目名称",
+					time:"2018/7/10 16:00"
+				},
+				{
+					reason:"塔机故障",
+					stateText:"紧急",
+					state:2,
+					names:"这里是项目名称",
+					time:"2018/7/10 16:00"
+				},
+				{
+					reason:"塔机故障",
+					stateText:"正常",
+					state:3,
+					names:"这里是项目名称",
+					time:"2018/7/10 16:00"
+				}
+			],
+			keywords:'',   //搜索关键字
+			isshow:false,    //是否显示清除按钮
+		},
+		methods:{
+			//删除按钮显示
+			delFn:function(evt){
+				var self=this;
+				self.keywords='';
+				self.isshow=false;
+			},
+			searchFn:function(evt){
+				var self=this;
+				self.list=[];
+				
+				//ajax
+			}
+		},
+		watch : {
+	        keywords:function(val) {
+	        	var self=this;
+	        	if(val.length>0){
+					self.isshow=true;
+				}
+				else{
+					self.isshow=false;
+				}
+	        }
+	    }
+	})
+</script>

@@ -1,0 +1,12 @@
+[ 2018-08-25T07:08:22+08:00 ] 123.147.250.99 /index.php?g=Portal&m=Index&a=getUserInfo&code=001YKgQ62dHVfK04wBP62aI4Q62YKgQL&state=STATE
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8E\xB5 _...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1N4vfUgV9vR4brnWbqddrBg','☀ 天氵 ☁间 🎵 _0.01km','http://thirdwx.qlogo.cn/mmopen/vi_32/nTJeT8ejelV4HwiaM4fOOHBBZdUxPtSgEALoAYoE2Wz20refibNpArWHqBbScF2bqMThtInll4sO5ua3mJyXPfAw/132','2')
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8E\xB5 _...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1N4vfUgV9vR4brnWbqddrBg','☀ 天氵 ☁间 🎵 _0.01km','http://thirdwx.qlogo.cn/mmopen/vi_32/nTJeT8ejelV4HwiaM4fOOHBBZdUxPtSgEALoAYoE2Wz20refibNpArWHqBbScF2bqMThtInll4sO5ua3mJyXPfAw/132','2')
+
+[ 2018-08-25T07:08:58+08:00 ] 123.147.250.99 /index.php?g=Portal&m=Index&a=getUserInfo&code=011NXTZc01xeUt161h2d0BiVZc0NXTZJ&state=STATE
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8E\xB5 _...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1N4vfUgV9vR4brnWbqddrBg','☀ 天氵 ☁间 🎵 _0.01km','http://thirdwx.qlogo.cn/mmopen/vi_32/nTJeT8ejelV4HwiaM4fOOHBBZdUxPtSgEALoAYoE2Wz20refibNpArWHqBbScF2bqMThtInll4sO5ua3mJyXPfAw/132','2')
+ERR: 1366:Incorrect string value: '\xF0\x9F\x8E\xB5 _...' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1N4vfUgV9vR4brnWbqddrBg','☀ 天氵 ☁间 🎵 _0.01km','http://thirdwx.qlogo.cn/mmopen/vi_32/nTJeT8ejelV4HwiaM4fOOHBBZdUxPtSgEALoAYoE2Wz20refibNpArWHqBbScF2bqMThtInll4sO5ua3mJyXPfAw/132','2')
+

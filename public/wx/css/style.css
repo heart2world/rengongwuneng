@@ -1,0 +1,158 @@
+
+
+body .weui-cells{
+	margin-top: 0;
+}
+body .weui-icon-cancel{
+	color: #666;
+}
+body .weui-cell:before{ left: 0;}
+
+body .weui-cell_access:active{ background-color: rgba(0,0,0,0);}
+/*按钮色*/
+body .weui-btn_primary{    
+	background-color: #d65343;
+}
+body .weui-btn_primary:not(.weui-btn_disabled):active{
+	background-color: #d65343;
+}
+body .toolbar .picker-button{ color: #d65343;}
+
+/*选框色*/
+.weui-cells_checkbox .weui-check:checked+.weui-icon-checked:before{
+	color: #d65343;
+}
+.weui-icon-checked{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	background: url(../img/xuanzhe@2x.png) no-repeat left center;
+	background-size: 15px;
+	background-position: center;
+	margin-right: 5px;
+}
+.weui-cells_radio .weui-check:checked+.weui-icon-checked:before{
+	content: "";
+	width: 30px;
+	height: 30px;
+	background: url(../img/xuanzhong@2x.png) no-repeat left center;
+	background-size: 15px;
+	background-position: center;
+	margin-left: 0;
+}
+
+/*提示框*/
+body .weui-toast{ min-height: auto; margin-left: auto; margin-right: auto; width:-webkit-max-content;width: max-content; min-width: 7.6rem; max-width: 20rem; top:50%}
+body .weui-toast>p{ color: #fff;}
+body .weui-toast_content{ padding-bottom:1rem}
+
+/*城市选择器*/
+body .weui-picker-modal .picker-item{ text-align: center;}
+
+/*图片预览样式*/
+body .weui-photo-browser-modal{ z-index:999}
+body .weui-photo-browser-modal .photo-container img{ max-width: 100%; margin:auto;height:auto}
+/*
+ 主题色：#d65343
+ 边线色：#dfdfdf
+ 标题色：#595959
+ 描述色：#9a9494
+ 底部图标文字色：#c3c3c3
+ * */
+.BTN{ display: block; margin: 2rem 15px; background: #0a72e5; color: #fff; height: 2.5rem; line-height: 2.5rem; text-align: center; border-radius: 50px;}
+.meng{ position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,.2); z-index: 998;}
+.notice{ position: fixed; top: 20%; left: 15px; right: 15px; z-index: 999; background: #fff; border-radius: 8px; padding: 2rem; text-align: center;}
+.nothing{ padding: 1rem; text-align: center; font-size: .95rem; color: #b0afaf;}
+
+
+/*在线报修*/
+.xialaForm>.jt{ background: url(../img/xiala@2x.png) no-repeat;background-size: 15px; background-position:  95%center;}
+
+/*图片视频框*/
+/*.urlBox{ display: -webkit-box;}*/
+.urlBox>div{ float: left; margin: 0 15px 15px 0; position: relative; overflow:hidden}
+.urlBox>div .del{ position: absolute; right: 5px; top: 5px; display: inline-block; width: 15px; height: 15px; background: url(../img/shanchu@2x.png) no-repeat; background-size: contain; z-index:99}
+
+/*添加图片视频按钮*/
+.meitiBox{ padding: 5px 30px; position: relative;}
+.meitiBox:before{ content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: #d9d9d9; transform:scaleY(.5);}
+.meitiBox .btnBox{ overflow: hidden;}
+.meitiBox .btnBox>div{ float: left; width: 2rem; height: 2rem; margin-right: 30px;}
+.meitiBox .btnBox>div.picBtn{ background: url(../img/xiangpian@2x.png) no-repeat; background-size: contain;}
+.meitiBox .btnBox>div.videoBtn{ background: url(../img/lvxiang@2x.png) no-repeat; background-size: contain;}
+
+/*选择报修项目*/
+.searchBox{ padding: .5rem; height: 2.5rem; position: relative;}
+.searchBox:after{ content: ""; position: absolute; left: 0; bottom: 0; right: 0; height: 1px; background: #d9d9d9; transform: scaleY(.5);}
+.searchBox .search{ background: url(../img/sousuo@2x.png) #f2f2f2 no-repeat .7rem center; background-size: 15px; border-radius: 20px; height: 1.5rem; line-height: 1.5rem; margin: 0 .5rem; padding-left: 40px;}
+.searchBox .search>input{ height: 1.5rem; line-height: 1.5rem; font-size: .95rem;}
+.searchBox .search .clearBtn{ width: 20px; height: 100%; background: url(../img/shanchu@2x.png) no-repeat center; background-size: 15px; margin-right: 5px;}
+.searchBox .sousuo{ font-size: .95rem; line-height: 1.5rem;}
+
+.baoxiu>p{ color: #b0afaf; font-size: .8rem; margin-top: .4rem;}
+.baoxiu>p:first-child{ color: #595959; font-size: .95rem; margin-top: 0;}
+ 
+ /*我的报修*/
+.choseTime{ padding: 10px 15px 10px 2rem; background: url(../img/riqi@2x.png) no-repeat; background-size: 22px; background-position: 15px center; position: relative;}
+.choseTime:after{ content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: #d9d9d9; transform: scaleY(.5);}
+.choseTime .time{ overflow: hidden;}
+.choseTime .time input{ float: left; width: 47%; height: 1.5rem; line-height: 1.5rem; text-align: center; font-size: .95rem;}
+.choseTime .time .line{ float: left; margin-top: -2px;}
+/*.choseTime .time .line:before{ content: ""; position: absolute; top: 50%; left: 0; width: .5rem; height: ; background: #595959;}*/
+.choseType{ height: 1.5rem; line-height: 1.5rem; padding: 0 20px 0 15px; border-left: 1px solid #d9d9d9; font-size: .95rem; background: url(../img/xiala@2x.png) no-repeat; background-size: 15px; background-position:  98% center; position: relative;}
+.choseType .choseState{ position: absolute; top: 2.2rem; left: 0; right: -15px; background: #fff; z-index: 999;text-align: center; line-height: 2.5rem;}
+.choseType .choseState>div{ border-bottom: 1px solid #f9f9f9;}
+.choseType .choseState>div:last-child{ border: 0;}
+.wdbxList p{ font-size: .8rem; color: #b0afaf; padding-top: .4rem;}
+
+/*报修状态字体颜色*/
+p.title{ font-size: .95rem; color: #595959; padding-top: 0;}
+.stateText{ font-size: .95rem !important; color: #595959;}
+.stateText.dzp{color: #fe9d1f;}
+.stateText.ybh{color: #fd5353;}
+.stateText.zpz{color: #22c4b5;}
+.stateText.yjs{color: #0060c9;}
+.stateText.ycl{color: #92d383;}
+.stateText.ypj{color: #595959;}
+
+/*紧急程度字体样式*/
+.jinjiText{ font-size: .95rem !important;}
+.jinjiText.fcjj{ color: #fd5353;}
+
+/*处理人员*/
+.callName{ background: url(../img/dianhua@2x.png) no-repeat center right; background-size: 20px; padding-right: 30px;}
+
+
+/*员工端*/
+/*注册*/
+.iconBtn{ border: 0; position: relative; width: 60px;}
+.iconBtn.addBtn{ background: url(../img/tianjia@2x.png) no-repeat center; background-size: 20px;}
+.iconBtn.delBtn{ background: url(../img/shanchu.png) no-repeat center; background-size: 20px;}
+.iconBtn:before{ content: ""; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: #e5e5e5;}
+.cityjt{ background: url(../img/xiala@2x.png) no-repeat right center; background-size: 15px; padding-right: 15px;}
+
+/*待接任务*/
+.djsText{ color: #22c4b5; font-size: .95rem;}
+.stateBg{ display: inline-block; color: #fff; font-size: 12px; width: 55px; margin-left: 5px; text-align: center;border-radius: 3px;}
+.stateBg.fcjj{ background: #fd5353;}
+.stateBg.jj{ background: #fe9d1f;}
+.stateBg.zc{ background: #92d383;}
+
+/*任务详情*/
+.iconAddress{ background: url(../img/dingwei@2x.png) no-repeat center right; background-size: 15px; padding-right: 20px;}
+.iconPerson{ background: url(../img/dianhua@2x.png) no-repeat center right; background-size: 15px; padding-right: 20px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

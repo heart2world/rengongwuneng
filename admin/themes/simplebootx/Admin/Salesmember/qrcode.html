@@ -1,0 +1,37 @@
+<admintpl file="header" />
+</head>
+<link href="__PUBLIC__/jedate/skin/jedate.css" rel="stylesheet">
+<style>
+	input[type="text"], input[type="number"] {
+		padding: 3.5px 6px;
+	}
+
+	.table tr th, .table tr td {
+		text-align: center;
+	}
+</style>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Salesmember/index')}">售后人员</a></li>
+			<li class="active"><a href="{:U('Salesmember/qrcode')}">注册码</a></li>
+		</ul>
+		<form class="form-horizontal">
+			<fieldset>
+				<div class="control-group" style="margin-bottom: 50px;">
+					<img src="{$code.param}" style="width: 200px">
+				</div>
+				<div class="control-group" style="margin-left: 100px;">
+					<a href="{$code.param}" download="注册码" class="btn btn-primary"  style="background-color: #00DDAA">下载</a>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+<script src="__PUBLIC__/js/common.js"></script>
+<script src="__PUBLIC__/js/layer/layer.js"></script>
+<script src="__PUBLIC__/js/artDialog/artDialog.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

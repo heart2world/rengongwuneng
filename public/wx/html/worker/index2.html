@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的报修</title>
+	    <link rel="stylesheet" href="../../lib/weui/jquery-weui.css" />
+	    <link rel="stylesheet" href="../../lib/weui/weui.min.css" />
+	    <link rel="stylesheet" href="../../lib/swiper/swiper.min.css" />
+	    <link rel="stylesheet" href="../../css/public.css" />
+	    <link rel="stylesheet" href="../../css/style.css" />
+	    <script type="text/javascript" src="../../lib/jq/jquery-1.10.2.js" ></script>
+	    <script type="text/javascript" src="../../lib/weui/jquery-weui.js" ></script>
+	    <script type="text/javascript" src="../../js/v.min.js" ></script>
+	    <script type="text/javascript" src="../../js/common.js" ></script>
+	</head>
+	<style>
+		.choseTime{ background:none; padding-left: 15px;}
+		.choseType{ border-left: 0; border-right: 1px solid #d9d9d9; background-position: 80% center;padding: 0 40px 0 0;}
+		.weui-cells:before{ display: none;}
+		.choseType .choseState{ top: 2rem; left: -15px;}
+	</style>
+	<body>
+		<section class="mainSec pb3rem" id="app">
+			<div class="choseTime disbox searchBox">
+				<div class="choseType">
+					<p @click="choseState($event)" v-text="zhuangtai"></p>
+					<div v-show="isshow" class="choseState">
+						<div @click="chose($event,4)">已接收</div>
+						<div @click="chose($event,5)">已处理</div>
+						<div @click="chose($event,6)">已评价</div>
+					</div>
+				</div>
+				<div class="disflex">
+					<div class="search disbox">
+						<input class="disflex searchkey" v-model="keywords" type="text" placeholder="请输入机构名称" />
+						<div v-show="isshow" class="clearBtn" @click="delFn($event)"></div>
+					</div>
+				</div>
+				<div class="sousuo" @click="searchFn($event)">搜索</div>
+			</div>
+			<div class="weui-cells wdbxList">
+	            <a href="details.html" class="weui-cell" v-for="prop in list">
+	                <div class="weui-cell__bd">
+	                    <p class="title" v-text="prop.reson"></p>
+	                    <p class="ellipsis" v-text="prop.name"></p>
+	                    <p v-text="prop.time"></p>
+	                </div>
+	                <div class="weui-cell__ft stateText" :class="prop.state==4?'yjs':(prop.state==5?'ycl':'ypj')" v-text="prop.stateText"></div>
+	            </a>
+	        </div>
+			<div v-show="isshow" class="meng" @click="isshow=false"></div>
+		</section>
+		<footer class="mainFooter">
+			<a class="djrw" href="index1.html">待接任务</div>
+			<a class="wdrw active">我的任务</div>
+		</footer>
+	</body>
+</html>
+<script>
+var app = new Vue({
+	el:'#app',
+	data:{
+		keywords:'',
+		zhuangtai:'状态',
+		isshow:false,//是否显示状态蒙层
+		list:[
+			{
+				reson:"塔机故障",
+				name:"这里是项目名称",
+				time:"2018/7/9 16:00",
+				state:4,
+				stateText:"已接收",
+			},
+			{
+				reson:"塔机故障",
+				name:"这里是项目名称2",
+				time:"2018/7/9 16:00",
+				state:5,
+				stateText:"已处理",
+			},
+			{
+				reson:"塔机故障",
+				name:"这里是项目名称3",
+				time:"2018/7/9 16:00",
+				state:6,
+				stateText:"已评价",
+			}
+		]
+	},
+	methods:{
+		//显示状态
+		choseState:function(evt){
+			var self=this;
+			self.isshow=true;
+		},
+		//选择状态
+		chose:function(evt,type){
+			var self=this;
+			self.zhuangtai=$(evt.target).text();
+			//ajax
+			this.isshow=false;
+		}
+		
+	},
+	watch : {
+        keywords:function(val) {
+        	var self=this;
+        	if(val.length>0){
+				self.isshow=true;
+			}
+			else{
+				self.isshow=false;
+			}
+        }
+    }
+})
+
+	var startDefault='';
+	var endDefault='';
+	$("#showDatePicker1").calendar({
+		dateFormat:'yyyy/m/d',
+		onChange:function(){    //用户选择日期时触发
+			//ajax
+		}
+	});
+	$("#showDatePicker2").calendar({
+		dateFormat:'yyyy/m/d',
+		onChange:function(){    //用户选择日期时触发
+			//ajax
+		}
+	});
+	
+	$(function(){
+		var dates=new Date();
+		var year=dates.getFullYear(),
+			month=dates.getMonth()+1;
+			day=dates.getDate();
+		startDefault=year+'/'+month+'/'+"1";
+		endDefault=year+'/'+month+'/'+day;
+		$('#showDatePicker1').val(startDefault);
+		$('#showDatePicker2').val(endDefault);
+	})
+	
+</script>

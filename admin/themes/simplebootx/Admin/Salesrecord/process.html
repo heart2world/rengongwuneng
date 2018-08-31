@@ -1,0 +1,88 @@
+<admintpl file="header" />
+</head>
+<style>
+    .table tr th, .table tr td {
+        text-align: center;
+    }
+</style>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('Salesrecord/index')}">售后记录</a></li>
+			<li><a href="{:U('Salesrecord/config')}">超时设置</a></li>
+		</ul>
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="control-group" style="margin-bottom: 0px;">
+                    <label class="control-label" style="margin-right: 20px">报修项目</label>
+                    <div class="controls" style="margin-top: 5px;">
+                        <label style="color: grey">{$record.project_name}</label>
+                    </div>
+                </div>
+                <div class="control-group" style="margin-bottom: 0px;">
+                    <label class="control-label" style="margin-right: 20px">故障类型</label>
+                    <div class="controls" style="margin-top: 5px;">
+                        <label style="color: grey">
+                            <if condition="$record.fault_type eq 1">塔机故障</if>
+                            <if condition="$record.fault_type eq 2">升降机故障</if>
+                            <if condition="$record.fault_type eq 3">扬尘故障</if>
+                            <if condition="$record.fault_type eq 4">视频故障</if>
+                            <if condition="$record.fault_type eq 5">门禁故障</if>
+                        </label>
+                    </div>
+                </div>
+                <div class="control-group" style="margin-bottom: 0px;">
+                    <label class="control-label" style="margin-right: 20px">申请人</label>
+                    <div class="controls" style="margin-top: 5px;">
+                        <label style="color: grey">{$record.user_name}</label>
+                    </div>
+                </div>
+                <div class="control-group" style="margin-bottom: 0px;">
+                    <label class="control-label" style="margin-right: 20px">联系电话</label>
+                    <div class="controls" style="margin-top: 5px;">
+                        <label style="color: grey">{$record.mobile}</label>
+                    </div>
+                </div>
+                <div class="control-group" style="margin-bottom: 0px;">
+                    <label class="control-label" style="margin-right: 20px">报修时间</label>
+                    <div class="controls" style="margin-top: 5px;">
+                        <label style="color: grey">{$record.create_time|date="Y-m-d H:i:s",###}</label>
+                    </div>
+                </div>
+                <table class="table table-hover table-bordered table-list" id="menus-table" style="width: 700px;margin-left: 80px">
+                    <thead>
+                    <tr>
+                        <th width="50">序号</th>
+                        <th width="80">时间</th>
+                        <th width="80">操作</th>
+                        <th width="80">处理人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="logs" id="val">
+                            <tr>
+                                <td>{$val.id}</td>
+                                <td><?= date('Y-m-d H:i:s',$val['create_time'])?></td>
+                                <td>{$val.action}</td>
+                                <td>
+                                    <if condition="$val.uid == 1">
+                                        {$val.user_info.user_name}
+                                        <else/>
+										<if condition="$val.action eq '申请售后' || $val.action eq '评价'">
+											{$val.record.user_name}/{$val.record.mobile}
+											<else/>
+											{$val.user_info.user_name}/{$val.user_info.mobile}
+										</if>
+                                    </if>
+                                </td>
+                            </tr>
+                        </volist>
+                    </tbody>
+                </table>
+                <div class="pagination" style="margin-left: 90px;">{$page}</div>
+            </fieldset>
+        </form>
+	</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+[ 2018-07-31T09:49:48+08:00 ] 183.3.255.35 /index.php?g=Portal&m=Index&a=getUserInfo&code=021cNehG1zQAB00b5ijG1nESgG1cNehu&state=STATE
+ERR: 1366:Incorrect string value: '\xF0\x9F\x90\x9F' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1AmqYNWg64d8FoeZ2o8t5Os','临渊羡🐟','http://thirdwx.qlogo.cn/mmopen/vi_32/fiaXmanrTicMn74YXe8T9SlXUw2VViaxynlcKo1D2KZ5DfviaFFSibcgnd15vMNwpsPUfaBbD9fK4cribhdkicAgz3sKQ/132','2')
+ERR: 1366:Incorrect string value: '\xF0\x9F\x90\x9F' for column 'nick_name' at row 1
+ [ SQL语句 ] : INSERT INTO `ngkj_users` (`openid`,`nick_name`,`avatar`,`user_type`) VALUES ('oOddZ1AmqYNWg64d8FoeZ2o8t5Os','临渊羡🐟','http://thirdwx.qlogo.cn/mmopen/vi_32/fiaXmanrTicMn74YXe8T9SlXUw2VViaxynlcKo1D2KZ5DfviaFFSibcgnd15vMNwpsPUfaBbD9fK4cribhdkicAgz3sKQ/132','2')
+

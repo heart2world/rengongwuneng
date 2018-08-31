@@ -1,0 +1,217 @@
+<admintpl file="header" />
+</head>
+<style>
+    .table tr th, .table tr td {
+        text-align: center;
+    }
+    .bigBox .meitiBox{ float: left; display: inline-block; width: 200px; height: 200px; margin: 0 20px 20px 0; overflow: hidden;}
+</style>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:U('Salesrecord/index')}">售后记录</a></li>
+        <li><a href="{:U('Salesrecord/config')}">超时设置</a></li>
+    </ul>
+    <form class="form-horizontal">
+        <fieldset>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">故障类型</label>
+                <div class="controls" style="margin-top: 5px;">
+                    <label style="color: grey">
+                        <if condition="$check.state eq 1">待指派</if>
+                        <if condition="$check.state eq 2">已驳回</if>
+                        <if condition="$check.state eq 3">指派中</if>
+                        <if condition="$check.state eq 4">已接收</if>
+                        <if condition="$check.state eq 5">已处理</if>
+                        <if condition="$check.state eq 6">已评价</if>
+                        &emsp;
+                        <if condition="$check.emergency_degree eq 1"><text style="color: grey">正常</text></if>
+                        <if condition="$check.emergency_degree eq 2"><text style="color:orange">紧急</text></if>
+                        <if condition="$check.emergency_degree eq 3"><text style="color: red">非常紧急</text></if>
+                    </label>
+                </div>
+
+            </div>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">申请人</label>
+                <div class="controls" style="margin-top: 5px;">
+                    <label style="color: grey">{$check.user_name}</label>
+                </div>
+            </div>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">联系电话</label>
+                <div class="controls" style="margin-top: 5px;">
+                    <label style="color: grey">{$check.mobile}</label>
+                </div>
+            </div>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">报修项目</label>
+                <div class="controls" style="margin-top: 5px;">
+                    <label style="color: grey">{$check.project_name}</label>
+                </div>
+            </div>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">故障类型</label>
+                <div class="controls" style="margin-top: 5px;">
+                    <label style="color: grey">
+                        <if condition="$check.fault_type eq 1">塔机故障</if>
+                        <if condition="$check.fault_type eq 2">升降机故障</if>
+                        <if condition="$check.fault_type eq 3">扬尘故障</if>
+                        <if condition="$check.fault_type eq 4">视频故障</if>
+                        <if condition="$check.fault_type eq 5">门禁故障</if>
+                    </label>
+                </div>
+            </div>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">报修时间</label>
+                <div class="controls" style="margin-top: 5px;">
+                    <label style="color: grey">{$check.create_time}</label>
+                </div>
+            </div>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">报修信息</label>
+				<div class="controls" style="margin-top: 5px;margin-left:100px;">
+					<label style="color: grey">{$check.repairs_info}</label>
+				</div>
+            </div>
+            <!--报修信息图片-->
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px"></label>
+				<div class="controls bigBox" style="overflow: hidden;">
+	                <volist name="repaird_info" id="val">
+					<if condition="$val.url neq ''">
+						<if condition='$val.format eq 1'>
+							<div class="meitiBox">
+								<a href="{$val.url}" target="_blank" style="display: inline-block; width: 100%; height: 100%;">
+									<img style="width: 100%; height: 100%; object-fit: contain;" src="{$val.url}"/>
+								</a>
+							</div>
+							<else/>
+							<div class="meitiBox">
+								<video controls="controls" style="width: 100%;height: 100%;">
+									<source src="{$val.url}"/>
+								</video>
+							</div>
+						</if>
+					</if>	
+	                </volist>
+				</div>
+            </div>
+            <if condition="$check['state'] ==2">
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">驳回原因</label>
+                <div class="controls" style="margin-top: 5px;">
+                    <label style="color: grey">{$check.reject_message}</label>
+                </div>
+            </div>
+            </if>
+			<if condition="$check['state'] !=2 && $check['state'] gt 1">
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">处理人</label>
+                <div class="controls" style="margin-top: 5px;">
+                    <label style="color: grey">{$check.cluser_name}</label>
+                </div>
+            </div>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">联系电话</label>
+                <div class="controls" style="margin-top: 5px;">
+                    <label style="color: grey">{$check.clmobile}</label>
+                </div>
+            </div>
+			<if condition="$check['state'] gt 4">
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">处理结果</label>
+                <div class="controls" style="margin-top: 5px;">
+                    <label style="color: grey">{$check.deal_message}</label>
+                </div>
+            </div>			
+            <!--处理结果图片信息-->
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px"></label>
+                <div class="controls bigBox" style="overflow: hidden;">
+	                <volist name="cljg_info" id="val">
+					<if condition="$val.url neq ''">
+						<if condition='$val.format eq 1'>
+							<div class="meitiBox">
+								<a href="{$val.url}" target="_blank" style="display: inline-block; width: 100%; height: 100%;">
+									<img style="width: 100%; height: 100%; object-fit: contain;" src="{$val.url}"/>
+								</a>
+							</div>
+							<else/>
+							<div class="meitiBox">
+								<video controls="controls" style="width: 100%;height: 100%;">
+									<source src="{$val.url}"/>
+								</video>
+							</div>
+						</if>
+					</if>	
+	                </volist>
+                </div>
+            </div>
+			</if>
+			</if>
+			<if condition="$check['state'] eq 6 && $check['state'] !=2">
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 20px">评价情况</label>
+                <div class="controls">
+                    <div class="control-group" style="margin-bottom: 0px; margin-top:5px">
+                <label class="control-label" style="margin-right: 0px; padding-top: 0;width:201px">1.您对本次服务的总体评价是?&emsp;</label>
+                <div class="controls">
+                    <label style="color: grey">
+                        <!--<if condition="$check.total_ate eq A">A.非常满意</if>-->
+                        <!--<if condition="$check.total_ate eq B">B.满意</if>-->
+                        <!--<if condition="$check.total_ate eq C">C.比较满意</if>-->
+                        <!--<if condition="$check.total_ate eq D">D.不满意</if>-->
+                        {$check.total_ate}
+                    </label>
+                </div>
+            </div>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 0px; padding-top: 0;width:243px">2.您对本次服务及及时性的满意程度?&emsp;</label>
+                <div class="controls">
+                    <label style="color: grey">
+                        <!--<if condition="$check.timeliness_ate eq A">A.非常满意，立即进行了处理</if>-->
+                        <!--<if condition="$check.timeliness_ate eq B">B.满意，很快进行了处理</if>-->
+                        <!--<if condition="$check.timeliness_ate eq C">C.比较满意，处理速度还可以</if>-->
+                        <!--<if condition="$check.timeliness_ate eq D">D.不满意，很久了都没人处理</if>-->
+                        {$check.timeliness_ate}
+                    </label>
+                </div>
+            </div>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 0px; padding-top: 0;width:187px">3.您对本次服务的态度印象?&emsp;</label>
+                <div class="controls">
+                    <label style="color: grey">
+                        <!--<if condition="$check.attitude_ate eq A">A.非常好，服务耐心，解答疑问效果好</if>-->
+                        <!--<if condition="$check.attitude_ate eq B">B.满意，服务过程细致</if>-->
+                        <!--<if condition="$check.attitude_ate eq C">C.比较满意，服务时态度友好</if>-->
+                        <!--<if condition="$check.attitude_ate eq D">D.不满意，服务时不好沟通，态度恶劣</if>-->
+                        {$check.attitude_ate}
+                    </label>
+                </div>
+            </div>
+            <div class="control-group" style="margin-bottom: 0px;">
+                <label class="control-label" style="margin-right: 0px;width:229px; padding-top: 0;">4.您对本次技术人员的专业性评价?&emsp;</label>
+                <div class="controls">
+                    <label style="color: grey">
+                        <!--<if condition="$check.proffesional_ate eq A">A.技术水平很高，能解决遇到的所有问题</if>-->
+                        <!--<if condition="$check.proffesional_ate eq B">B.技术水平好，能解决遇到的大部分问题</if>-->
+                        <!--<if condition="$check.proffesional_ate eq C">C.技术水平待加强，能解决遇到的简单问题</if>-->
+                        <!--<if condition="$check.proffesional_ate eq D">D.技术水平较差，不能解决问题</if>-->
+                        {$check.proffesional_ate}
+                    </label>
+                </div>
+            </div>
+                </div>
+            </div>
+            
+			</if>            
+        </fieldset>
+    </form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript">
+	
+</script>
+</body>
+</html>

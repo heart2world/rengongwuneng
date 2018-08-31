@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>填写处理信息</title>
+	    <link rel="stylesheet" href="__PUBLIC__/wx/lib/weui/jquery-weui.css" />
+	    <link rel="stylesheet" href="__PUBLIC__/wx/lib/weui/weui.min.css" />
+	    <link rel="stylesheet" href="__PUBLIC__/wx/lib/swiper/swiper.min.css" />
+	    <link rel="stylesheet" href="__PUBLIC__/wx/css/public.css" />
+	    <link rel="stylesheet" href="__PUBLIC__/wx/css/style.css" />
+	    <script type="text/javascript" src="__PUBLIC__/wx/lib/jq/jquery-1.10.2.js" ></script>
+	    <script type="text/javascript" src="__PUBLIC__/wx/lib/weui/jquery-weui.js" ></script>
+	    <script type="text/javascript" src="__PUBLIC__/wx/js/v.min.js" ></script>
+	    <script type="text/javascript" src="http://jqweui.com/dist/js/swiper.js" ></script>
+	    <script type="text/javascript" src="__PUBLIC__/wx/js/common.js" ></script>
+	</head>
+	<body>
+		<section class="mainSec pb3rem" id="app">
+			<div class="weui-cells weui-cells_form xialaForm">
+	            <div class="weui-cell">
+	                <div class="weui-cell__hd"><label class="weui-label stateText">报修信息</label></div>
+	            </div>
+	            <div>
+                    <textarea class="weui-textarea" style="padding: 0 15px 10px;" v-model="info" placeholder="请描述处理信息并上传图片或视频..." rows="3"></textarea>
+                    <div class="urlBox clearfix" style="padding: 0 0 0 15px;">
+                    	<div class="picBox boxItem">
+                    		<img src="../../img/tupian@2x.png" style="width: 100%; object-fit: cover;" />
+                    		<span class="del" @click="delFn($event)"></span>
+                    		<input type="hidden" class="urls" />
+                    	</div>
+                    	<div class="vedioBox boxItem">
+                    		<video src="../../img/video.mp4" controls name="media" style="width:100%;height: 100%;"></video>
+                    		<span class="del" @click="delFn($event)"></span>
+                    		<input type="hidden" class="urls" />
+                    	</div>
+                    	<div class="vedioBox"></div>
+                    </div>
+                </div>
+                <div class="meitiBox">
+                	<div class="btnBox">
+                		<div class="picBtn"></div>
+                		<div class="videoBtn"></div>
+                	</div>
+                </div>
+	        </div>
+	        <div class="BTN" @click="tijiaoFn($event)">完成提交</div>
+			<div v-show="isshow" class="meng"></div>
+			<div v-show="isshow" class="notice" v-text="notice"></div>
+		</section>
+	</body>
+</html>
+<script>
+var app = new Vue({
+		el:'#app',
+		data:{
+			info:'',      //报修信息
+			picUrls:'',    //图片路径
+			videoUrls:'',    //视频路径
+			notice:'',      //提示语
+			isshow:false     //是否显示蒙层
+		},
+		methods:{
+			setTime:function(){
+				var self=this;
+				setTimeout(function() {
+					self.isshow=false;
+				}, 2000)
+			},
+			//删除图片，视频
+			delFn:function(evt){
+				var self=this;
+				$(evt.target).parents('.boxItem').remove();
+			},
+			//点击提交
+			tijiaoFn:function(evt){
+				var self=this;
+				console.log(self.picUrls);
+				console.log(self.videoUrls);
+				$('.boxItem').each(function(){
+					if($(this).hasClass('picBox')){
+						self.picUrls+=$(this).find("input").val()+",";
+					}
+					else{
+						self.videoUrls+=$(this).find("input").val()+",";
+					}
+					console.log(self.picUrls);
+				})
+				self.picUrls=self.picUrls.substr(0,self.picUrls.length-1);
+				self.videoUrls=self.videoUrls.substr(0,self.videoUrls.length-1);
+					console.log(self.picUrls);
+				
+				if(self.info.length<1){
+					self.notice="请输入报修描述";
+					self.isshow=true;
+					self.setTime();
+					return
+				}
+				// if(self.picUrls.length<1&&self.videoUrls.length<1){
+				// 	self.notice="请上传故障照片或视频";
+				// 	self.isshow=true;
+				// 	self.setTime();
+				// 	return
+				// }
+				//ajax
+                $.ajax({
+                    url: "{:U('User/Center/deal')}",
+                    type: 'POST',
+                    data: {id:'{$id}',deal_message:self.info},
+                    dataType:"json",
+                    success:function (res) {
+                        if (res.status == 1) {
+                            self.notice="感谢您的反馈我们将尽快为您处理~";
+                            self.isshow=true;
+                            $('body').addClass('overflow');
+                            setInterval(function () {
+                                location.href = '{:U("work")}';
+                            }, 1000)
+                        }else {
+                            self.notice="当前网络繁忙，请稍后再试~";
+                            self.isshow=true;
+                            $('body').addClass('overflow');
+                        }
+                    }
+                });
+			}
+		}
+	})
+
+$(function(){
+	var width=$(window).width()-60;
+	console.log(width)
+	$('.urlBox>div').width(width/3);
+	$('.urlBox>div').height(width/3);
+	
+	//图片预览
+	$(".picBox").bind('click','img',function(evt){
+		var html1=evt.currentTarget.innerHTML;
+		var urls=$(evt.target).attr("src")
+		var preview = $.photoBrowser({
+		  items: [
+			urls
+		  ],
+		  onClose:function(){
+		  	preview.close();
+		  }
+		});
+		preview.open();
+	})
+	
+})
+</script>
